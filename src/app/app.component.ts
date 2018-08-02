@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NavController } from 'ionic-angular';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -11,7 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, navCtrl: NavController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -19,4 +20,15 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  openPage(page){
+    // push another page onto the navigation stack
+    // causing the nav controller to transition to the new page
+    // optional data can also be passed to the pushed page.
+    this.navCtrl.push(page, {
+      id: "123",
+      name: "Diego"
+    });
+  }
+
 }
